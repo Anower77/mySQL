@@ -1,0 +1,222 @@
+CREATE TABLE student (
+    Roll int(),
+    Name varchar(20),
+    Gender varchar(10),
+    Age int(10),
+    GPA double(3, 2),
+    City varchar(10),
+    PRIMARY KEY (Roll)
+);
+
+
+========================
+SELECT Name,Age
+FROM students_details
+ORDER BY Name, Age		
+
+=====================
+SELECT * 
+FROM students_details
+WHERE City NOT IN ('feni', 'Dhaka','Sylhet')
+
+
+==========================
+
+SELECT Roll AS ID , Name AS "First Name"
+FROM students_details
+
+==========================
+
+===================
+SELECT DISTINCT City
+FROM students_details
+WHERE Gender= 'male'
+
+
+====================
+
+
+SELECT *
+FROM students_details
+WHERE Gender='male' OR GPA >= 3.50
+
+====================
+SELECT *
+FROM students_details
+WHERE Gender='male' AND GPA >= 3.50
+
+
+=====================
+SELECT *
+FROM students_details
+WHERE City = 'dhaka'
+		AND
+    (Gender = 'male' OR GPA >= 3.50)
+
+
+=============================
+
+
+
+INSERT INTO teacher(Name, Salary)
+VALUES
+('Jamal sir',50000),
+('Nazim sir',60000),
+('johorlal sir',40000),
+('Hojur sir',70000)
+
+============================
+
+UPDATE teacher
+SET Salary = 500000
+WHERE ID = 102
+======================
+
+DELETE FROM teacher 
+WHERE ID=1002
+================
+
+
+UPDATE teacher
+SET Salary = Salary + 1000
+WHERE Salary > 10000
+
+
+
+========================
+
+SELECT UPPER (city)
+FROM students_details
+========================
+
+
+SELECT CONCAT(Name,' is',Age,' years old') AS student
+FROM students_details
+========================
+
+
+
+SELECT POW(2,2);
+SELECT LOG(2);
+==========================
+
+SELECT COUNT(*), MAX(Salary), MIN(Salary), SUM(Salary),AVG(Salary)
+FROM teacher
+
+============================
+
+SELECT Roll, Name,Age,City,MIN(GPA)
+FROM students_details
+WHERE Gender='male'
+
+===========================
+
+
+SELECT *
+FROM teacher
+WHERE Salary > (SELECT AVG(Salary) FROM teacher)
+
+================================
+
+
+
+
+ALTER TABLE teacher
+ADD Dept varchar(20)
+
+=================================
+
+ALTER TABLE teacher
+ADD Dept varchar(20)
+
+============================
+
+ALTER TABLE teacher
+CHANGE Dept Department varchar(15)
+
+
+===============================
+
+SELECT Department,SUM(Salary)
+FROM teacher
+GROUP BY Department
+ORDER BY SUM(Salary) DESC
+
+==============================
+
+
+TRUNCATE TABLE teacher
+
+============================
+
+joing table
+==================
+SELECT students_details.Roll, 
+             exam_result.Reg_number,
+             students_details.Name, 
+             students_details.Gender,
+             exam_result.Group_name,  
+              exam_result.GPA
+
+FROM students_details, exam_result
+WHERE students_details.Roll = exam_result.Roll  
+
+====================================
+
+SELECT std.Roll, exam.Reg_Number, std.Name , std.Gender ,exam.Group_name 
+
+FROM students_details AS std JOIN exam_result AS exam
+
+ON std.Roll = exam.Roll
+
+======================================
+
+SELECT std.Roll, exam.Reg_Number, std.Name , std.Gender ,exam.Group_name 
+
+FROM students_details AS std INNER JOIN exam_result AS exam
+
+ON std.Roll = exam.Roll
+
+===========================================
+
+
+
+SELECT Roll,Name,Gender
+FROM sylhet_tour
+
+UNION
+
+SELECT Roll,Name,Gender
+FROM dhaka_tour
+
+
+========================================
+
+SELECT Roll,Name,Gender
+FROM sylhet_tour
+
+UNION ALL
+
+SELECT Roll,Name,Gender
+FROM dhaka_tour
+
+=====================================
+
+CREATE VIEW student_view AS
+SELECT Roll,Name,Gender
+FROM students_details
+
+
+=======================================
+
+
+
+UPDATE student_view
+SET Name = 'hossain'
+WHERE Roll = 101
+
+
+
+
+==================================
+
